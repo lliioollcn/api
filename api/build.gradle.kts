@@ -1,16 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("maven-publish")
-    id("signing")
+    alias(libs.plugins.agp.lib)
+    `maven-publish`
+    signing
 }
 
 android {
     namespace = "io.github.libxposed.api"
-    compileSdk = 33
-    buildToolsVersion = "33.0.2"
+    compileSdk = 34
+    buildToolsVersion = "34.0.0"
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
         consumerProguardFiles("proguard-rules.pro")
     }
 
@@ -20,8 +20,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
-        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
     }
 
     publishing {
@@ -93,4 +93,5 @@ signing {
 
 dependencies {
     compileOnly("androidx.annotation:annotation:1.6.0")
+    lintPublish(project(":checks"))
 }
